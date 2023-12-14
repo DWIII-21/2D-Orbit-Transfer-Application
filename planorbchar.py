@@ -1,4 +1,4 @@
-#---------------- Celestial Body Characteristic Calculator ---------------#
+#---------------- Celestial Body Characteristic Calculator ---------------# 
 
 #This script performs two functions
 #The first function (planchar) returns characteristics of the chosen celestial body
