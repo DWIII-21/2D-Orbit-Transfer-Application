@@ -1,4 +1,4 @@
-# ---------------------- 2D Circular Orbit Transfer w/ GUI --------------------- #
+# ---------------------- 2D Circular Orbit Transfer w/ GUI --------------------- # 
 
 import tkinter as tk
 from tkinter import *
