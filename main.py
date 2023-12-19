@@ -1,4 +1,4 @@
-# ---------------------- 2D Circular Orbit Transfer w/ GUI --------------------- # 
+# ---------------------- 2D Circular Orbit Transfer w/ GUI --------------------- #
 
 import tkinter as tk
 from tkinter import *
@@ -140,10 +140,8 @@ class TransferSim():
                 self.sc_start = self.set_depart_alt.get()
             
                 if self.sc_start == 'LEO' or self.sc_start == 'leo':
-                    print("Altitude for LEO for this program is locked in at 160 km.")
                     self.alt1 = 160
                     self.r1 = eq + self.alt1
-                    print('\nIf final destination is GEO, enter "GEO" for arrival altitude.')
                 
                 elif self.sc_start == 'GEO' or self.sc_start == 'geo':
                     self.alt1 = 35789
@@ -303,11 +301,14 @@ class TransferSim():
 
         orb_type = self.set_orbit_type.get()
         if orb_type == 'Hohmann':
-            self.int_rad_label.destroy()
-            self.set_int_rad.destroy()
-            self.int_rad_exp_label.destroy()
-            self.set_int_rad_exp.destroy()
-            self.int_rad_km_label.destroy()
+            try:
+                self.int_rad_label.destroy()
+                self.set_int_rad.destroy()
+                self.int_rad_exp_label.destroy()
+                self.set_int_rad_exp.destroy()
+                self.int_rad_km_label.destroy()
+            except:
+                pass
 
             self.set_go_button.grid(row=7, column=0, padx=10, pady=10)
 
@@ -344,9 +345,9 @@ class TransferSim():
         orb_type = self.set_orbit_type.get()
 
 
-        #################
-        # Planet Images #
-        #################
+        ###########################################
+        # Planet Images/Non-Numerical Interfacing #
+        ###########################################
 
         if self.trsf_type == '1':
 
@@ -456,12 +457,6 @@ class TransferSim():
             
                 self.print_TOF_1.destroy()
                 self.print_TOF_2.destroy()
-
-                self.int_rad_label.destroy()
-                self.set_int_rad.destroy()
-                self.int_rad_exp_label.destroy()
-                self.set_int_rad_exp.destroy()
-                self.int_rad_km_label.destroy()
             
             except:
                 pass
@@ -679,7 +674,6 @@ class TransferSim():
             self.print_MF_text2.grid(row=16, column=3, pady=1)
 
             #Plotting the spacecraft's elliptical orbit
-            print("The distance measurements plotted in each axis \nuse the orbits' RADIUS, not their altitude")
             t = np.linspace(-2*m.pi,2*m.pi,10**6)
             z = np.linspace(0,m.pi,10**6)
             zan = np.linspace(0,np.pi,100)  #Sets values for animation functionto iterate thru
@@ -854,12 +848,6 @@ class TransferSim():
             
                 self.print_TOF_1.destroy()
                 self.print_TOF_2.destroy()
-
-                self.int_rad_label.destroy()
-                self.set_int_rad.destroy()
-                self.int_rad_exp_label.destroy()
-                self.set_int_rad_exp.destroy()
-                self.int_rad_km_label.destroy()
             
             except:
                 pass
@@ -879,8 +867,6 @@ class TransferSim():
                 if not self.r1_rep < 10:
                     self.r1_rep = round(self.r1/(10**n),3)
                     self.exp_r1 = n
-            print("Intermediate radius is a design parameter.")
-            print('When prompted, input INTERMEDIATE RADIUS in the form \nradius*10^exponent as "radius[space]exponent".') 
             rI_base = self.set_int_rad.get()
             rI_exp = self.set_int_rad_exp.get()
             rI = float(rI_base)*10**float(rI_exp)
@@ -1130,7 +1116,6 @@ class TransferSim():
             
 
             #Plotting the spacecraft's bi-elliptic transfer orbit
-            print("The distance measurements plotted in each axis \nuse the orbits' RADIUS, not their altitude")
             t = np.linspace(-2*m.pi,2*m.pi,10**6)
             z = np.linspace(0,m.pi,10**6)
             zan = np.linspace(0,np.pi,100)  #Sets values for animation functionto iterate thru
