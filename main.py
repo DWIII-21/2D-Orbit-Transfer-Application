@@ -126,6 +126,26 @@ class TransferSim():
 
     def set_planets(self):
 
+        ###################################################
+        # Deleting Residual Labels for Bi-Elliptic Inputs #
+        ###################################################
+
+        try:
+            self.int_rad_label.destroy()
+            self.set_int_rad.destroy()
+            self.int_rad_exp_label.destroy()
+            self.set_int_rad_exp.destroy()
+            self.int_rad_km_label.destroy()
+            
+        except:
+            pass
+
+        self.set_go_button.grid(row=7, column=0, padx=10, pady=10)
+
+        ############################
+        # Basic Orbit Calculations #
+        ############################
+
         if self.trsf_type == '1':
 
             #For transfer between two orbits in a SINGLE CELESTIAL BODY'S Sphere of Influence
@@ -300,19 +320,7 @@ class TransferSim():
             self.h2 = m.sqrt(p2*self.mu2)
 
         orb_type = self.set_orbit_type.get()
-        if orb_type == 'Hohmann':
-            try:
-                self.int_rad_label.destroy()
-                self.set_int_rad.destroy()
-                self.int_rad_exp_label.destroy()
-                self.set_int_rad_exp.destroy()
-                self.int_rad_km_label.destroy()
-            except:
-                pass
-
-            self.set_go_button.grid(row=7, column=0, padx=10, pady=10)
-
-        elif orb_type == 'Bi-Elliptic':
+        if orb_type == 'Bi-Elliptic':
 
             nu1 = 270*self.rad
             nuI = 90*self.rad
@@ -343,7 +351,6 @@ class TransferSim():
     def run_sim(self):
 
         orb_type = self.set_orbit_type.get()
-
 
         ###########################################
         # Planet Images/Non-Numerical Interfacing #
